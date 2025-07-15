@@ -71,7 +71,7 @@ This app connects to several intelligent backend services:
 
 ## Live Website
 
-[Click here to open the app](https://nexium-sumayya-assign2.vercel.app/)
+[Click here to open the app](https://nexium-sumayya-assign2-jvxy.vercel.app/)
 
 ---
 
@@ -122,8 +122,7 @@ SUPABASE_ANON_KEY=your_supabase_anon_key
 - Only GROQ_API_KEY is required to run basic summary & translation
 - MongoDB and Supabase enhance storage and future scalability
 
-## 5. Example URLs to Try
+## 5. Example URLs 
+- https://simplefood.blog/
 
-[Example 1](https://blog.hubspot.com/marketing/content-marketing)
-
-[Example 2](https://uxdesign.cc/design-trends-2024)
+- https://uxdesign.cc/design-trends-2024

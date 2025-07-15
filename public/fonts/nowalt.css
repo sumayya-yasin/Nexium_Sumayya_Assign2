@@ -1,0 +1,46 @@
+@font-face {
+    font-family: 'Now Alt Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Now Alt Regular'), url('NowAlt-Regular.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Now Alt Thin';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Now Alt Thin'), url('NowAlt-Thin.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Now Alt Light';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Now Alt Light'), url('NowAlt-Light.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Now Alt Medium';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Now Alt Medium'), url('NowAlt-Medium.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Now Alt Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Now Alt Bold'), url('NowAlt-Bold.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Now Alt Black';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Now Alt Black'), url('NowAlt-Black.woff') format('woff');
+}

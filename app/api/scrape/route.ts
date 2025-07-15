@@ -16,10 +16,14 @@ export async function POST(request: Request) {
     
     return NextResponse.json({ text });
     
-  } catch (error: any) {
-    return NextResponse.json(
-      { error: error.message || 'Failed to scrape website' },
-      { status: 500 }
-    );
+  } catch (err: unknown) {
+  let errorMessage = "Internal Server Error";
+
+  if (err instanceof Error) {
+    errorMessage = err.message;
   }
+
+  return NextResponse.json({ error: errorMessage }, { status: 500 });
+}
+
 }

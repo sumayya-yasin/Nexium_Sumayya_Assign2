@@ -14,7 +14,6 @@ export default function Home() {
   const [urduSummary, setUrduSummary] = useState<string>("");
   const [showThemeDropdown, setShowThemeDropdown] = useState(false);
   const [showCopied, setShowCopied] = useState(false);
-  const [showDownloaded, setShowDownloaded] = useState(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [translationLoading, setTranslationLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -59,9 +58,16 @@ export default function Home() {
       const { translated } = await translationRes.json();
       setUrduSummary(translated);
       setTranslationLoading(false);
-    } catch (e: any) {
-      setError(e.message);
-    } finally {
+    } catch (err: unknown) {
+  let errorMessage = "Internal Server Error";
+
+  if (err instanceof Error) {
+    errorMessage = err.message;
+  }
+
+  return Response.json({ error: errorMessage }, { status: 500 });
+}
+ finally {
       setLoading(false);
       setTranslationLoading(false);
     }
@@ -302,11 +308,6 @@ export default function Home() {
       {showCopied && (
         <div className="fixed bottom-6 right-6 bg-black text-white text-sm px-4 py-2 rounded shadow-lg z-50">
           Copied to clipboard!
-        </div>
-      )}
-      {showDownloaded && (
-        <div className="fixed top-6 right-6 bg-black text-white text-sm px-4 py-2 rounded shadow-lg z-50">
-          Downloading..
         </div>
       )}
     </main>

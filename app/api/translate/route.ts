@@ -27,10 +27,14 @@ export async function POST(request: Request) {
     if (!translated) throw new Error('LLM returned no translation.');
 
     return NextResponse.json({ translated });
-  } catch (error: any) {
-    return NextResponse.json(
-      { error: error.message || 'Failed to translate text' },
-      { status: 500 }
-    );
+  } catch (err: unknown) {
+  let errorMessage = "Internal Server Error";
+
+  if (err instanceof Error) {
+    errorMessage = err.message;
   }
+
+  return NextResponse.json({ error: errorMessage }, { status: 500 });
+}
+
 }

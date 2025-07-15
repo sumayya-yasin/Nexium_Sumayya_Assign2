@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Loader2, Moon, Sun, Download } from "lucide-react";
+import { Loader2, Download } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Home() {

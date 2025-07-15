@@ -1,50 +1,129 @@
-# Assignment 1 – Quote Generator
+# Assignment 2 – Blog Summarizer
 
-This is my first assignment for the **Nexium AI-First Web Development Internship**.
+This is my second assignment for the **Nexium AI-First Web Development Internship**.
 
-## ✨ What this app does
-- You can enter a topic like `"success"` or `"motivation"`.
-- It will show you **3 motivational quotes** related to that topic.
-- The quotes are stored **locally** (not fetched from an API).
-- The app demonstrates fetching quotes from both a **JSON file** and a **TypeScript array**, side by side.
+---
 
-> 🔍 The assignment required using either a JSON file or an array.  
-> ✨ But for learning purposes, I used **both** methods in this project to compare and better understand how they work.
+## What this app does
 
-## 🛠️ Tools and Technologies
-- **Next.js 15**
-- **Tailwind CSS v4.1**
-- **ShadCN UI**
-- **TypeScript**
-- **pnpm**
+- Enter a **blog or article URL**
+- The app **scrapes content** from that webpage
+- Then it uses **AI** to generate an **English summary**
+- That summary is **translated into Urdu**
+- You can **copy or download** both versions
+- Includes **Light, Dark, and Teal themes**
 
-## 🌐 Live Website
-👉 [Click here to open the app](https://nexium-sumayya-assign1-8ct7.vercel.app/)
+---
 
-## 💡 Example Topics
-You can try:
-- `success`
-- `motivation`
-- `learning`
-- Or any other word — it will show default quotes.
+## AI + Backend Overview
 
-## 📁 How to Run (for developers)
+This app connects to several intelligent backend services:
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/sumayya-yasin/Nexium_Sumayya_Assign1.git
-   cd Nexium_Sumayya_Assign1
-   ```
-2. Install dependencies:
-`pnpm install`
+### 1. Content Scraping
 
-3. Start the app:
-`pnpm dev`
+- Custom `/api/scrape` endpoint
+- Uses `cheerio` and `axios` to extract readable content
+- The **raw scraped content is stored in MongoDB**
 
-## 💬 Example Topics
-You can try:
-- `success`
-- `motivation`
+### 2. AI Summarization (GROQ)
 
-## 📄 .env.example
-No need for .env here. Just added the `.env.example` file as required.
+- Uses **GROQ API** (OpenAI’s fast inference engine)
+- Summarizes the scraped content into simple English
+- Stored in Supabase
+
+### 3. Urdu Translation
+
+- Also uses **GROQ** to translate summary into Urdu
+- Urdu summary is stored in Supabase too
+
+---
+
+## Database Usage
+
+- **MongoDB**
+- Stores **raw scraped text**
+- Useful for caching and reference
+
+- **Supabase**
+- Stores:
+  - The entered blog/article URL
+  - The English summary
+  - The Urdu translation
+- Allows future features like user history or analytics
+
+---
+
+## Technologies Used
+
+- **Next.js 15** – React framework
+- **Tailwind CSS v4.1** – Utility-first styling
+- **ShadCN UI** – Styled component library
+- **TypeScript** – Type safety
+- **Framer Motion** – Animation library
+- **Lucide Icons** – Icons
+- **pnpm** – Package manager
+- **GROQ API** – Summarization & Translation
+- **Cheerio & Axios** – Web scraping
+- **MongoDB** – For raw content storage
+- **Supabase** – For storing summaries & translations
+
+---
+
+## Live Website
+
+[Click here to open the app](https://nexium-sumayya-assign2.vercel.app/)
+
+---
+
+## Features
+
+- Input blog URL
+- AI-based summarization
+- Urdu translation
+- Copy to clipboard
+- Download summary
+- Theme toggle: Light / Dark / Teal
+- Smooth transitions and loading indicators
+
+---
+
+## How to Run Locally
+
+1. **Clone the repo**
+
+```bash
+   git clone https://github.com/sumayya-yasin/Nexium_Sumayya_Assign2.git
+   cd Nexium_Sumayya_Assign2
+```
+
+## 2. Install Dependencies
+
+```bash
+pnpm install
+```
+
+## 3. Start development server
+
+```bash
+pnpm dev
+```
+
+## 4. env Configuration
+
+Add the following in .env.local:
+
+```bash
+GROQ_API_KEY=your_groq_api_key
+MONGODB_URI=your_mongodb_uri
+SUPABASE_URL=your_supabase_project_url
+SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+- Only GROQ_API_KEY is required to run basic summary & translation
+- MongoDB and Supabase enhance storage and future scalability
+
+## 5. Example URLs to Try
+
+[Example 1](https://blog.hubspot.com/marketing/content-marketing)
+
+[Example 2](https://uxdesign.cc/design-trends-2024)

@@ -58,16 +58,31 @@ export default function Home() {
       const { translated } = await translationRes.json();
       setUrduSummary(translated);
       setTranslationLoading(false);
+
+      await fetch("/api/save-summary", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          url,
+          summary: cleaned,
+          urdu: translated,
+        }),
+      });
+
+      await fetch("/api/save-fulltext", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url, text }),
+      });
     } catch (err: unknown) {
-  let errorMessage = "Internal Server Error";
+      let errorMessage = "Internal Server Error";
 
-  if (err instanceof Error) {
-    errorMessage = err.message;
-  }
+      if (err instanceof Error) {
+        errorMessage = err.message;
+      }
 
-  return Response.json({ error: errorMessage }, { status: 500 });
-}
- finally {
+      return Response.json({ error: errorMessage }, { status: 500 });
+    } finally {
       setLoading(false);
       setTranslationLoading(false);
     }
